@@ -10,5 +10,7 @@ namespace QuestionDomain
     {
         public int Id { get; set; } 
         public string Title { get; set; }
+        public Question Question { get; set; }
+        public int QuestionId { get; set; }
     }
 }
