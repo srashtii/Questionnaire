@@ -14,8 +14,10 @@ namespace QuestionDomain
         public int Id { get; set; }
 
         [MaxLength(100, ErrorMessage = "Anwser should not exceed 200 characters")]
-        public string Title { get; set; }
-        public Question Question { get; set; }
+        public string Title { get; set; } = string.Empty;
+
+        public Question? Question { get; set; }
+        
         public int QuestionId { get; set; }
         public bool IsAnswer
         {
@@ -24,7 +26,7 @@ namespace QuestionDomain
             set
             {
                 _isAnswered = value;
-                if (Question.Type == QuestionType.Text)
+                if (Question?.Type == QuestionType.Text)
                     _isAnswered = true;
 
             }
