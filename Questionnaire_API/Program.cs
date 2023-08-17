@@ -13,7 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<QuesContext>(op =>
-op.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+op.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"))
+.EnableSensitiveDataLogging());
 builder.Services.AddScoped<IQuestionRepository, DefaultQuestionRepository>();
 
 var app = builder.Build();
