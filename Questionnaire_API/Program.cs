@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using QuestionData;
+using Questionnaire_API.Interfaces;
+using Questionnaire_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<QuesContext>(op =>
 op.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+builder.Services.AddScoped<IQuestionRepository, DefaultQuestionRepository>();
 
 var app = builder.Build();
 
