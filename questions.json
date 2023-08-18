@@ -1,0 +1,85 @@
+{
+  "questionList": [
+    {
+      "id": 1,
+      "question": "Which language do you prefer ?",
+      "type": "checkbox",
+      "options": [ "English", "French" ]
+    },
+    {
+      "id": 2,
+      "question": "Which programming language do you prefer ?",
+      "type": "checkbox",
+      "options": [ "Python", "C#" ]
+    },
+    {
+      "id": 3,
+      "question": "Which framework do you work on ?",
+      "type": "selectList",
+      "options": [
+        {
+          "id": 1,
+          "text": "MVC"
+        },
+        {
+          "id": 2,
+          "text": "Azure functions"
+        },
+        {
+          "id": 3,
+          "text": "Azure functions"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "What do you mean by clean code ?",
+      "type": "text"
+
+    },
+    {
+      "id": 5,
+      "question": "Which color is your fav ?",
+      "type": "selectList",
+      "options": [
+        {
+          "id": 1,
+          "text": "Red"
+        },
+        {
+          "id": 2,
+          "text": "Green"
+        },
+        {
+          "id": 3,
+          "text": "Purple"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "What do you mean by Domain Driven Architecture ?",
+      "type": "text"
+
+    },
+    {
+      "id": 5,
+      "question": "Which color is your fav",
+      "type": "selectList",
+      "options": [
+        {
+          "id": 1,
+          "text": "Red"
+        },
+        {
+          "id": 2,
+          "text": "Green"
+        },
+        {
+          "id": 3,
+          "text": "Purple"
+        }
+      ]
+    }
+  ]
+}
