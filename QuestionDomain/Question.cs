@@ -11,6 +11,6 @@ namespace QuestionDomain
         public int Id { get; set; }
         public string Text { get; set; } = string.Empty;
         public QuestionType Type { get; set; }
-        public List<AnswerOption>? AnswerOptions {get; set;} = new List<AnswerOption>();
+        public List<AnswerOption> AnswerOptions {get; set;} = new List<AnswerOption>();
     }
 }

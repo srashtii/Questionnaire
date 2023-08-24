@@ -24,7 +24,9 @@ namespace Questionnaire_API.Services
 
         public async Task<IEnumerable<Question>> GetQuestionsAsync()
         {
-            return await _context.Questions.ToListAsync();
+            return await _context.Questions
+                .Include(x=> x.AnswerOptions)
+                .ToListAsync();
         }
 
         public Task UpdateQuestionAsync(Question question)
