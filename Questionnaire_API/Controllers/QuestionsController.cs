@@ -2,6 +2,8 @@
 using QuestionDomain;
 using Questionnaire_API.Interfaces;
 using Questionnaire_API.Models;
+using Questionnaire_API.Services;
+using System.Text.Json;
 
 namespace Questionnaire_API.Controllers
 {
@@ -16,11 +18,14 @@ namespace Questionnaire_API.Controllers
             _questionRepository = questionRepository ?? throw new ArgumentNullException(nameof(questionRepository));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<QuestionDto>>> GetQuestions(int? id)
+        public async Task<ActionResult<IEnumerable<QuestionDto>>> GetQuestions(
+             int pageNumber = 1, int pageSize = 2
+            )
         {
-            if (id == null)
+
+            var (questionEntities, paginationData) = await _questionRepository.GetQuestionsAsync(pageSize, pageNumber);
+            if (questionEntities.Any())
             {
-                var questionEntities = await _questionRepository.GetQuestionsAsync();
                 var questionsDtos = questionEntities.Select(questionEntity => new QuestionDto
                 {
                     Id = questionEntity.Id,
@@ -29,8 +34,8 @@ namespace Questionnaire_API.Controllers
                     AnswerOptions = GetAnswerOptionDtos(questionEntity)
 
                 });
+                Response.Headers.Add("X-pagination", JsonSerializer.Serialize(paginationData));
                 return Ok(questionsDtos);
-
             }
             return Ok(Enumerable.Empty<QuestionDto>());
         }
