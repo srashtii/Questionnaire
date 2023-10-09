@@ -22,9 +22,17 @@ namespace Questionnaire_API.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Question>> GetQuestionsAsync()
+        public async Task<(IEnumerable<Question>, PaginationMetadata)> GetQuestionsAsync(int pageSize, int pageNumber)
         {
-            return await _context.Questions.ToListAsync();
+            var res = await _context.Questions
+                .Include(x => x.AnswerOptions)
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .ToListAsync();
+            var totalItemCount = res.Count;
+            var paginationMetadata = new PaginationMetadata(
+                totalItemCount, pageSize, pageNumber);
+            return (res, paginationMetadata);
         }
 
         public Task UpdateQuestionAsync(Question question)
@@ -33,4 +41,3 @@ namespace Questionnaire_API.Services
         }
     }
 }
-    
